@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    private Rigidbody rb;
     public float speed = 5f;
-    Rigidbody rb;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Move(float input)
     {
-        float xMove = Input.GetAxisRaw("Horizontal");
-        float zMove = Input.GetAxisRaw("Vertical");
-
-        rb.velocity = new Vector3(xMove, rb.velocity.y, zMove) * speed;
+        rb.AddForce(transform.forward * input * speed, ForceMode.Force);
     }
 }
